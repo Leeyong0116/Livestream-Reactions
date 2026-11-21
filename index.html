@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livestream Reaction Engine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main id="stage">
+    <h1>Livestream Reactions</h1>
+
+    <div id="reaction-container" aria-hidden="true"></div>
+
+    <div class="controls" role="group" aria-label="Reaction controls">
+      <button id="send-btn" type="button">Send Reaction</button>
+      <button id="burst-btn" type="button">Send 60 Reactions</button>
+
+      <label class="control" for="animation-mode">
+        Engine
+        <select id="animation-mode">
+          <option value="css">CSS keyframes</option>
+          <option value="gsap">GSAP</option>
+        </select>
+      </label>
+
+      <label class="control" for="speed">
+        Speed
+        <input id="speed" type="range" min="0.1" max="2.0" step="0.1" value="1.0" disabled>
+        <output id="speed-value" for="speed">1.0×</output>
+      </label>
+    </div>
+  </main>
+
+  <template id="reaction-icons">
+    <svg viewBox="0 0 24 24" class="icon-heart">
+      <path d="M12 21S2 15.5 2 8.8a5.3 5.3 0 0 1 10-2.4 5.3 5.3 0 0 1 10 2.4C22 15.5 12 21 12 21Z"/>
+    </svg>
+    <svg viewBox="0 0 24 24" class="icon-like">
+      <path d="M3 10h4v11H3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Zm6 0 4-7a1.8 1.8 0 0 1 3.3 1.2L15.5 9H20a2 2 0 0 1 2 2.4l-1.6 7.8a2.2 2.2 0 0 1-2.2 1.8H9Z"/>
+    </svg>
+    <svg viewBox="0 0 24 24" class="icon-flame">
+      <path d="M13 2c1 5-3 6-2 10 1-1 3-2 3-5 4 2 6 5 6 8a8 8 0 0 1-16 0c0-5 4-7 4-11 1 1 2 2 2 4 2-2 3-4 3-6Z"/>
+      <path d="M12 13c2 3 4 4 4 6a4 4 0 0 1-8 0c0-2 2-3 4-6Z" fill="#fff3cc"/>
+    </svg>
+    <svg viewBox="0 0 24 24" class="icon-star">
+      <path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2 1.2-6.8-5-4.9 6.9-1Z"/>
+    </svg>
+  </template>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

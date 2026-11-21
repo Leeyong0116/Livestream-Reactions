@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111827;
+  color: white;
+}
+
+#stage {
+  --spawn-bottom: 100px;
+  --flight-top-gap: 40px;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 0;
+  padding-top: 0.67em;
+  text-align: center;
+}
+
+#reaction-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  border: 1px solid white;
+}
+
+.controls {
+  position: absolute;
+  inset: auto 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  margin-inline: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #475569;
+  border-radius: 12px;
+  background: #1e293b;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.controls button,
+.controls select {
+  padding: 8px 10px;
+  border: 1px solid #64748b;
+  border-radius: 6px;
+  background: #0f172a;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+#send-btn {
+  background: #c4b5fd;
+  color: #201342;
+  font-weight: bold;
+}
+
+#speed {
+  width: 100px;
+  accent-color: #c4b5fd;
+}
+
+#speed-value {
+  min-width: 3.2em;
+  font-variant-numeric: tabular-nums;
+}
+
+.reaction {
+  position: absolute;
+  bottom: var(--spawn-bottom);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.reaction svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.icon-heart { color: #fb7185; }
+.icon-like { color: #60a5fa; }
+.icon-flame { color: #fb923c; }
+.icon-star { color: #facc15; }
+
+.reaction--css {
+  animation: float 3s linear forwards;
+}
+
+.reaction--gsap {
+  transform-origin: bottom left;
+  will-change: transform, opacity;
+}
+
+@media (max-width: 700px) {
+  #stage {
+    --spawn-bottom: 140px;
+  }
+}
+
+@keyframes float {
+  0% {
+    bottom: var(--spawn-bottom);
+    margin-left: 0;
+    font-size: 24px;
+    opacity: 1;
+  }
+
+  25% {
+    margin-left: -30px;
+  }
+
+  50% {
+    margin-left: 20px;
+  }
+
+  75% {
+    margin-left: -20px;
+    opacity: 1;
+  }
+
+  100% {
+    bottom: max(var(--spawn-bottom), calc(100% - var(--flight-top-gap)));
+    margin-left: 0;
+    font-size: 32px;
+    opacity: 0;
+  }
+}
