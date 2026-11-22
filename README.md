@@ -21,7 +21,6 @@ To reproduce the comparison, open **Show Rendering** from the DevTools Command M
 
 
 
-
 ### Benchmark at 6× CPU slowdown
 
 The reactions looked choppy and DevTools showed substantial paint activity during the initial interactive CSS run. For the comparison below, I re-recorded CSS mode using the final shared SVG assets. Both profiles Chrome browser on Windows, 6× CPU slowdown, Paint Flashing, and Frame Rendering Stats. Each run spawned 60 of the same seeded icons and start positions at `1.0×`. Both runs reached 60 active elements and cleaned up to zero.
@@ -34,7 +33,11 @@ The reactions looked choppy and DevTools showed substantial paint activity durin
 
 ### What did the main thread activity (Layout, Recalculate Style, Paint) look like in the flame chart?
 
-The **Main** track shows repeated purple **Recalculate Style** and **Layout** blocks followed by green **Paint** blocks throughout the 60-reaction burst. Chrome recalculated the animated CSS values, used Layout to update the icons' positions and sizes, then repainted the affected areas.
+During the 60-reaction animation, I noticed many purple and green blocks in the Main thread.
+
+The purple blocks show that Chrome was recalculating styles and layouts to update the icons' positions and sizes. The green blocks show painting work.
+
+Because the CSS animation continuously changes `bottom`, `margin-left`, and `font-size`, Chrome has to repeat these operations during the animation. This increases the workload and can make the animation less smooth.
 
 
 ## 3. Phase 2: GSAP & Composited Rendering Analysis
