@@ -58,6 +58,7 @@ Both modes now clone the same four SVGs from an HTML template. In GSAP mode, the
 
 - The CSS flame chart shows repeated Layout and Paint throughout the burst. In the GSAP trace, Layout appears once and the main thread spends much less time painting. GSAP's writes still generate style updates, so the flame chart has JavaScript and style work during flight.
 - The median gap between `requestAnimationFrame` callbacks fell from **207.1 ms** in CSS mode to **66.7 ms** in GSAP mode during the recordings. GSAP delivered callbacks more often under this workload. The screenshots include momentary FPS overlay readings from separate bursts. The callback gaps measure cadence over the recorded bursts.
+- With 60 concurrent reactions at 6× CPU slowdown, the CSS trace showed repeated layout and paint work. The GSAP trace showed less of both while animating transforms and opacity. The Frame Rendering Stats overlay showed 56.4 FPS in the CSS screenshot and 46.8 FPS in the GSAP screenshot. These readings came from separate bursts and reflect the time of each capture. Comparing smoothness across the full animation would require measuring frame timing over the same portion of each run.
 
 ### What happened to the green paint invalidation areas once animations moved to composited transforms (`x`, `y`)?
 - The GSAP screenshot shows the icons in flight without the green trails visible in the CSS capture. Chrome still has to paint the icons to create their layer contents and can then move, scale, and blend those layers during the flight.
